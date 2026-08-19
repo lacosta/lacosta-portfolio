@@ -1,0 +1,32 @@
+$content-width: 1120px;
+$section-space: 96px;
+$section-space-mobile: 72px;
+
+@mixin theme-tokens {
+  :root {
+    --background: #f7f6f2;
+    --foreground: #20231f;
+    --card: #eeeee9;
+    --muted: #73766f;
+    --border: #dcdcd4;
+    --accent: #e5a84b;
+    --ink: #20231f;
+    --contact-background: #20231f;
+    --ring: #e5a84b;
+    --content-width: #{$content-width};
+    --section-space: #{$section-space};
+    --section-space-mobile: #{$section-space-mobile};
+  }
+
+  .dark {
+    --background: #181a19;
+    --foreground: #f4f2eb;
+    --card: #222522;
+    --muted: #a4a79e;
+    --border: #353936;
+    --accent: #efb65c;
+    --ink: #f4f2eb;
+    --contact-background: #101311;
+    --ring: #efb65c;
+  }
+}
