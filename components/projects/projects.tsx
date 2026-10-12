@@ -6,20 +6,19 @@ import { Card } from "./card";
 
 export const Projects = () => {
   return (
-    <section id="work" className="work">
+    <section id="work" className="work" aria-labelledby="work-title">
       <div className="container section__inner">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">Production frontend work</p>
-            <h2 className="section-heading__title">
-              Frontend problems, in context.
+            <p className="eyebrow">Independent products</p>
+            <h2 id="work-title" className="section-heading__title">
+              Selected work.
             </h2>
           </div>
-          <span className="section-heading__meta">2022 — 2024</span>
         </div>
         <div className="work-grid">
-          {projects.map((project, index) => (
-            <Card key={project.title} project={project} index={index} />
+          {projects.map((project) => (
+            <Card key={project.slug} project={project} />
           ))}
         </div>
       </div>

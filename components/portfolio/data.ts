@@ -1,29 +1,75 @@
-export const projects = [
+export interface Project {
+  slug: string;
+  title: string;
+  category: string;
+  description: string;
+  tags: readonly string[];
+  status: string;
+  cover: { src: string; alt: string; width: number; height: number };
+  publicLink: {
+    href: string | null;
+    label: string;
+    description?: string;
+  } | null;
+}
+
+export const projects: readonly Project[] = [
   {
-    title: "PedidosYa",
-    category: "Fintech · 2024",
+    slug: "orbit-finance",
+    title: "ORBIT Finance",
+    category: "Personal finance · AI",
     description:
-      "Checkout work and reusable components for a payment flow with many states and edge cases.",
-    tags: ["React", "TypeScript", "Design system"],
-    tone: "blue",
+      "A personal finance platform combining transactions, budgeting, savings goals, debt management, and financial analytics with an AI-powered assistant that helps users better understand their finances.",
+    tags: ["React", "TypeScript", "React Router", "SCSS Modules", "i18next"],
+    status: "In development",
+    cover: {
+      src: "/projects/orbit-finance/cover.webp",
+      alt: "ORBIT Finance promotional cover showing a financial dashboard and financial assistant.",
+      width: 1200,
+      height: 900,
+    },
+    publicLink: null,
   },
   {
-    title: "Pulse",
-    category: "SaaS · 2023",
+    slug: "ani-studio",
+    title: "Ani Studio",
+    category: "Commerce · Creative learning",
     description:
-      "A metrics dashboard where dense data needs to stay readable, consistent and useful.",
-    tags: ["React", "Data-heavy UI", "UX/UI"],
-    tone: "sand",
+      "A full-stack platform connecting handmade products, personalized orders, product customization, e-commerce, and online courses through an integrated shopping and learning experience.",
+    tags: ["Next.js", "TypeScript", "Supabase", "PostgreSQL", "Stripe"],
+    status: "In development",
+    cover: {
+      src: "/projects/ani-studio/cover.webp",
+      alt: "Ani Studio promotional cover showing embroidery products, product customization, and an online craft course.",
+      width: 1200,
+      height: 900,
+    },
+    publicLink: {
+      href: "https://anistudio.store/",
+      label: "Visit website",
+      description: "Public coming-soon website; the full platform is still in development.",
+    },
   },
   {
-    title: "Civic Lab",
-    category: "Platform · 2022",
+    slug: "mockadabra",
+    title: "Mockadabra",
+    category: "Developer tools · Chrome extension",
     description:
-      "Components and prototypes for turning complex processes into clearer product flows.",
-    tags: ["React", "Accessibility", "Figma"],
-    tone: "green",
+      "A browser extension for API mocking, featuring configurable rules, projects, environments, and reusable variables to make frontend development and testing more flexible.",
+    tags: ["TypeScript", "Chrome Extension APIs", "API Mocking"],
+    status: "Chrome Web Store review pending",
+    cover: {
+      src: "/projects/mockadabra/cover.webp",
+      alt: "Mockadabra promotional cover featuring a witch, a cat, and illustrated API request and response panels.",
+      width: 1200,
+      height: 900,
+    },
+    publicLink: {
+      href: null,
+      label: "Chrome Web Store",
+    },
   },
-] as const;
+];
 
 export const experience = [
   {
