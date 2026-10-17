@@ -30,7 +30,7 @@ export interface Project {
 
 const MOCKADABRA_STORE_URL: string =
   "https://chromewebstore.google.com/detail/mockadabra-api-mocking-re/jchfebdkfiognkefhfpmiimancglfiid";
-const MOCKADABRA_SITE_URL: string = "https://mockadabra-website.vercel.app/";
+const MOCKADABRA_SITE_URL: string = "https://mockadabra.com/";
 
 export const projects: readonly Project[] = [
   {

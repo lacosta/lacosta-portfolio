@@ -16,12 +16,12 @@ I care about accessibility, frontend performance, and maintainable, well-tested 
 
 Three independent products, from a published developer tool to platforms still taking shape.
 
-| Mockadabra | ORBIT Finance | Ani Studio |
-| :--- | :--- | :--- |
-| ![Mockadabra project artwork with API request and response panels](public/projects/mockadabra/cover.webp) | ![ORBIT Finance project artwork with a financial dashboard](public/projects/orbit-finance/cover.webp) | ![Ani Studio project artwork with handmade products and an online course](public/projects/ani-studio/cover.webp) |
-| A Chrome extension for mocking and modifying API requests, with rules, projects, environments, variables, and advanced request matching. | A personal finance application for accounts, transactions, budgets, analytics, and financial goals. | A creative commerce and learning platform for handmade products, personalized creations, and online courses. |
-| **Published on the Chrome Web Store** | **In development** | **In development** |
-| [Website](https://mockadabra-website.vercel.app/) · [Add to Chrome](https://chromewebstore.google.com/detail/mockadabra-api-mocking-re/jchfebdkfiognkefhfpmiimancglfiid) | Private build; no public link yet. | [Coming-soon website](https://anistudio.store/) |
+| Mockadabra                                                                                                                                                | ORBIT Finance                                                                                         | Ani Studio                                                                                                       |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------- |
+| ![Mockadabra project artwork with API request and response panels](public/projects/mockadabra/cover.webp)                                                 | ![ORBIT Finance project artwork with a financial dashboard](public/projects/orbit-finance/cover.webp) | ![Ani Studio project artwork with handmade products and an online course](public/projects/ani-studio/cover.webp) |
+| A Chrome extension for mocking and modifying API requests, with rules, projects, environments, variables, and advanced request matching.                  | A personal finance application for accounts, transactions, budgets, analytics, and financial goals.   | A creative commerce and learning platform for handmade products, personalized creations, and online courses.     |
+| **Published on the Chrome Web Store**                                                                                                                     | **In development**                                                                                    | **In development**                                                                                               |
+| [Website](https://mockadabra.com/) · [Add to Chrome](https://chromewebstore.google.com/detail/mockadabra-api-mocking-re/jchfebdkfiognkefhfpmiimancglfiid) | Private build; no public link yet.                                                                    | [Coming-soon website](https://anistudio.store/)                                                                  |
 
 ## Inside the portfolio
 
