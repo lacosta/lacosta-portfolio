@@ -1,4 +1,10 @@
 @use './variables';
 @use './base';
+@use './header';
+@use './hero';
+@use './work';
+@use './experience';
+@use './approach';
+@use './contact';
 
 @include variables.theme-tokens;

@@ -1,7 +1,7 @@
 "use client";
 
 // @packages
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { Check, Send, X } from "lucide-react";
 
 interface DialogProps {
@@ -13,6 +13,14 @@ interface DialogProps {
 export const Dialog = ({ sent, setSent, close }: DialogProps) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") close();
+    };
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [close]);
 
   const handleContactSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -73,7 +81,7 @@ export const Dialog = ({ sent, setSent, close }: DialogProps) => {
           </div>
         ) : (
           <form onSubmit={handleContactSubmit} className="form">
-            <Field label="Name" name="name" placeholder="Your name" />
+            <Field label="Name" name="name" placeholder="Your name" autoFocus />
             <Field
               label="Email"
               name="email"
@@ -94,7 +102,7 @@ export const Dialog = ({ sent, setSent, close }: DialogProps) => {
             <button
               type="submit"
               disabled={loading}
-              className="button form__button"
+              className="button button--accent form__button"
             >
               {loading ? "Sending..." : "Send message"} <Send size={16} />
             </button>
@@ -110,11 +118,13 @@ const Field = ({
   name,
   placeholder,
   type = "text",
+  autoFocus = false,
 }: {
   label: string;
   name: string;
   placeholder: string;
   type?: string;
+  autoFocus?: boolean;
 }) => {
   return (
     <label className="form__field">
@@ -123,6 +133,7 @@ const Field = ({
         required
         name={name}
         type={type}
+        autoFocus={autoFocus}
         className="form__input"
         placeholder={placeholder}
       />

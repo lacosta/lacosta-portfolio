@@ -1,0 +1,125 @@
+@use "./variables" as *;
+
+.approach {
+  padding-top: 112px;
+  padding-bottom: 112px;
+
+  @include mobile {
+    padding-top: $section-space-mobile;
+    padding-bottom: $section-space-mobile;
+  }
+}
+.approach__inner {
+  display: flex;
+  gap: 72px;
+
+  @include tablet-down {
+    flex-direction: column;
+    gap: 40px;
+  }
+}
+.approach__intro {
+  flex: 0 0 440px;
+
+  .eyebrow {
+    margin-bottom: 16px;
+  }
+
+  @include tablet-down {
+    flex: none;
+    max-width: 600px;
+  }
+}
+.approach__title {
+  margin: 0 0 24px;
+  font-size: clamp(34px, 3.4vw, 50px);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+
+  @include mobile {
+    margin-bottom: 20px;
+    font-size: 30px;
+    line-height: 1.04;
+  }
+}
+.approach__copy {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.principles {
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--border-strong);
+  list-style: none;
+}
+.principles__item {
+  display: grid;
+  grid-template-columns: 48px 260px minmax(0, 1fr);
+  gap: 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  @include tablet-down {
+    grid-template-columns: 40px 220px minmax(0, 1fr);
+  }
+  @include mobile {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 6px 10px;
+    padding: 16px 0;
+  }
+}
+.principles__index {
+  padding-top: 2px;
+  color: var(--muted);
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+
+  @include mobile {
+    padding-top: 1px;
+    color: var(--accent);
+    font-size: 11px;
+  }
+}
+.principles__name {
+  color: var(--accent);
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+
+  @include mobile {
+    font-size: 11px;
+  }
+}
+.principles__name--muted {
+  color: var(--muted);
+}
+.principles__description,
+.principles__toolbox {
+  margin: 0;
+  font-size: 15px;
+
+  @include mobile {
+    grid-column: 1 / -1;
+    font-size: 14px;
+  }
+}
+.principles__description {
+  color: var(--foreground-soft);
+  line-height: 1.6;
+}
+.principles__toolbox {
+  color: var(--foreground);
+  line-height: 1.9;
+}
+.principles__separator {
+  color: var(--faint);
+}

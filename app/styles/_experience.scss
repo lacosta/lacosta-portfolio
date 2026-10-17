@@ -1,0 +1,354 @@
+@use "./variables" as *;
+
+$graph-width: 64px;
+$graph-width-mobile: 32px;
+$step-delay: 0.45s;
+
+.timeline-ruler {
+  // Reserves the client-rendered ruler's height (years row + track) to avoid a layout shift.
+  min-height: 27px;
+  margin: 24px 0 56px $graph-width + 24px;
+
+  @include mobile {
+    margin: 16px 0 40px;
+  }
+}
+.timeline-ruler__years {
+  display: grid;
+  grid-template-columns: repeat(var(--years), minmax(0, 1fr));
+  padding-bottom: 10px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+
+  @include mobile {
+    font-size: 9px;
+  }
+}
+.timeline-ruler__year {
+  color: var(--faint);
+  transition: color $duration-base ease;
+
+  &[data-active="true"] {
+    color: var(--foreground);
+  }
+}
+.timeline-ruler__track {
+  position: relative;
+  height: 2px;
+  background: var(--border-subtle);
+}
+.timeline-ruler__band {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: var(--active-color);
+  transition:
+    left 0.6s $ease-precise,
+    width 0.6s $ease-precise,
+    background-color $duration-base ease;
+}
+.timeline-ruler__label {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  color: var(--active-color);
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  white-space: nowrap;
+  transition: color $duration-base ease;
+
+  @include mobile {
+    font-size: 9px;
+  }
+}
+
+.timeline-ruler__company {
+  @include mobile {
+    display: none;
+  }
+}
+
+.timeline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.timeline__item {
+  --lane-color: var(--lane-main);
+  display: flex;
+  gap: 24px;
+  opacity: 0.68;
+  transition: opacity $duration-base ease;
+
+  &[data-active="true"] {
+    opacity: 1;
+  }
+
+  @include mobile {
+    gap: 14px;
+  }
+}
+.timeline__item--head {
+  --lane-color: var(--lane-head);
+}
+.timeline__item--branch {
+  --lane-color: var(--lane-branch);
+}
+
+// Graph column
+.timeline__graph {
+  --line-x: 12px;
+  --branch-x: 44px;
+  --node-y: 30px;
+  position: relative;
+  flex: 0 0 $graph-width;
+
+  @include mobile {
+    --line-x: 10px;
+    --branch-x: 26px;
+    --node-y: 23px;
+    flex-basis: $graph-width-mobile;
+  }
+}
+.timeline__line {
+  position: absolute;
+  left: 11px;
+  width: 2px;
+  background: var(--border-strong);
+  transform-origin: top;
+  transition: transform 0.9s $ease-precise calc(var(--step) * #{$step-delay} + 0.1s);
+
+  @include mobile {
+    left: 9px;
+  }
+}
+.timeline__line--above {
+  top: 0;
+  height: 30px;
+
+  @include mobile {
+    height: 23px;
+  }
+}
+.timeline__line--below {
+  top: 30px;
+  bottom: 0;
+
+  @include mobile {
+    top: 23px;
+  }
+}
+.timeline__item--head .timeline__line--below {
+  background: var(--lane-head);
+}
+.timeline__item--branch .timeline__line--below,
+.timeline__item--branch .timeline__line--above {
+  top: 0;
+  height: auto;
+  bottom: 0;
+}
+.timeline__item--branch .timeline__line--above {
+  display: none;
+}
+// Parallel branch: leaves the main line, runs beside it and merges back.
+// Built from fixed-size pieces so the curves stay true at any entry height.
+.timeline__branch {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 0.8s $ease-precise calc(var(--step) * #{$step-delay} + 0.3s);
+
+  > span {
+    position: absolute;
+  }
+}
+.timeline__branch-in {
+  top: 0;
+  left: calc(var(--line-x) - 1px);
+  width: calc(var(--branch-x) - var(--line-x) + 1px);
+  height: calc(var(--node-y) + 1px);
+  border-color: var(--lane-branch);
+  border-style: solid;
+  border-width: 0 0 2px 2px;
+  border-bottom-left-radius: 14px;
+}
+.timeline__branch-stem {
+  top: var(--node-y);
+  bottom: 23px;
+  left: calc(var(--branch-x) - 1px);
+  width: 2px;
+  background: var(--lane-branch);
+}
+.timeline__branch-out {
+  bottom: 0;
+  left: calc(var(--line-x) - 1px);
+  width: calc(var(--branch-x) - var(--line-x) + 2px);
+  height: 24px;
+  border-color: var(--lane-branch);
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  border-bottom-right-radius: 14px;
+}
+.timeline__node {
+  position: absolute;
+  top: 22px;
+  left: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: var(--lane-color);
+  box-shadow: 0 0 0 4px var(--background);
+  transition:
+    transform 0.45s $ease-precise calc(var(--step) * #{$step-delay}),
+    box-shadow $duration-base ease;
+
+  [data-active="true"] > .timeline__graph > & {
+    box-shadow:
+      0 0 0 4px var(--background),
+      0 0 0 5px var(--lane-color);
+  }
+
+  @include mobile {
+    top: 16px;
+    left: 3px;
+    width: 14px;
+    height: 14px;
+    box-shadow: 0 0 0 3px var(--background);
+
+    [data-active="true"] > .timeline__graph > & {
+      box-shadow:
+        0 0 0 3px var(--background),
+        0 0 0 4px var(--lane-color);
+    }
+  }
+}
+.timeline__item--branch .timeline__node {
+  left: 36px;
+  border: 2px solid var(--lane-branch);
+  background: var(--background);
+
+  @include mobile {
+    left: 19px;
+  }
+}
+
+// Progressive drawing when the timeline first scrolls into view.
+[data-in-view="hidden"] {
+  .timeline__line {
+    transform: scaleY(0);
+  }
+  .timeline__node {
+    transform: scale(0);
+  }
+  .timeline__branch {
+    clip-path: inset(0 0 100% 0);
+  }
+}
+
+// Entry column
+.timeline__entry {
+  position: relative;
+  display: flex;
+  flex: 1 1 0;
+  gap: 40px;
+  min-width: 0;
+  padding: 18px 20px 40px;
+
+  .timeline__item:last-child & {
+    padding-bottom: 24px;
+  }
+
+  @include mobile {
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 10px 32px;
+  }
+}
+.timeline__ticks {
+  position: absolute;
+  inset: 4px 0 24px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity $duration-base ease;
+  @include inspect-corners;
+
+  .timeline__item:last-child & {
+    inset: 4px 0 8px;
+  }
+  [data-active="true"] & {
+    opacity: 1;
+  }
+
+  @include mobile {
+    inset: 4px 0 18px;
+    @include inspect-corners(7px);
+  }
+}
+.timeline__meta {
+  display: flex;
+  flex: 0 0 180px;
+  flex-direction: column;
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  line-height: 1.8;
+
+  @include mobile {
+    flex: none;
+    flex-flow: row wrap;
+    column-gap: 8px;
+    font-size: 10px;
+    line-height: 1.5;
+  }
+}
+.timeline__lane {
+  color: var(--lane-color);
+}
+.timeline__body {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  max-width: 760px;
+}
+.timeline__title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+
+  @include mobile {
+    font-size: 21px;
+  }
+}
+.timeline__select {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+}
+.timeline__role {
+  color: var(--muted);
+  font-weight: 400;
+}
+.timeline__description,
+.timeline__details {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.65;
+}
+.timeline__description {
+  color: var(--foreground-soft);
+}
+.timeline__details {
+  color: var(--muted);
+
+  @include mobile {
+    display: none;
+  }
+}

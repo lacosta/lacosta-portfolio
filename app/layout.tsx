@@ -1,15 +1,15 @@
 // @packages
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
-import { Geist, Playfair_Display } from "next/font/google";
+import { Geist, Martian_Mono } from "next/font/google";
 
 // @app
 import "./styles/global.scss";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
-const playfair = Playfair_Display({
+const martianMono = Martian_Mono({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
@@ -27,14 +27,14 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  colorScheme: "light dark",
-  themeColor: "#f7f6f2",
+  colorScheme: "dark light",
+  themeColor: "#0b0c0e",
 };
 
 const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
     <html lang="en">
-      <body className={`${geist.variable} ${playfair.variable}`}>
+      <body className={`${geist.variable} ${martianMono.variable}`}>
         {children}
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>

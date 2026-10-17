@@ -9,7 +9,7 @@ The portfolio reflects the kind of frontend work I do in real codebases: buildin
 This is a Next.js portfolio built with the App Router. The site includes:
 
 - Responsive portfolio sections for selected work, experience and working approach.
-- Light and dark themes.
+- A dark-first theme with a light counterpart.
 - Local brand and company assets.
 - A contact dialog backed by a server-side Resend integration.
 - Sass styles organized around BEM-style component classes.
@@ -35,21 +35,25 @@ app/
   layout.tsx         Root layout and metadata
   page.tsx           Page composition
 components/
-  about/             Working approach section
-  contact/           Contact CTA and dialog
-  experience/        Professional experience
-  hero/              Homepage hero
+  about/             How I work: principles and toolbox
+  brand/             lacosta.dev wordmark
+  contact/           Contact palette and dialog
+  experience/        Git-graph experience timeline
+  footer/            Site footer
+  header/            Header, navigation and theme switch
+  hero/              Homepage hero and profile summary
   portfolio/         Shared portfolio data
-  projects/          Project list and project card
-  skills/            Tools and practices
+  projects/          Selected Work with a switchable featured project
+  section-heading/   Shared section heading
 lib/
   contact/           Contact parsing and email service
+  hooks/             Shared React hooks
 public/
   companies/         Company logos
   *.png, *.svg       Brand and favicon assets
 ```
 
-Components are kept close to their responsibility. Data that is shared by multiple portfolio sections lives in `components/portfolio/data.ts`. Styles are loaded from `app/styles/global.scss` and use BEM-style names such as `.work-card__title` and `.experience__item`.
+Components are kept close to their responsibility. Data that is shared by multiple portfolio sections lives in `components/portfolio/data.ts`. Styles are loaded from `app/styles/global.scss` and use BEM-style names such as `.work-featured__title` and `.timeline__item`, with one partial per section.
 
 ## Getting started
 
