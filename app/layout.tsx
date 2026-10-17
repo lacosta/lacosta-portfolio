@@ -13,16 +13,9 @@ const martianMono = Martian_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LACOSTA — Frontend Developer",
+  title: "lacosta.dev",
   description:
     "Frontend Developer focused on React, TypeScript and production frontend systems.",
-  icons: {
-    icon: [
-      { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
-    ],
-    apple: "/icon-192.png",
-  },
   manifest: "/site.webmanifest",
 };
 

@@ -1,149 +1,62 @@
-# LACOSTA Portfolio
+# lacosta.dev
 
-Personal portfolio for LACOSTA, a Frontend Developer focused on React, TypeScript and production frontend systems.
+**Frontend Developer · React & TypeScript**
 
-The portfolio reflects the kind of frontend work I do in real codebases: building and maintaining React applications, working with reusable components and design systems, integrating APIs, handling complex interfaces, debugging existing behavior and testing changes that matter.
+My personal portfolio: the independent products I'm building, my professional experience, and how I approach complex production frontend applications.
 
-## About the project
+### [Visit the live portfolio →](https://www.lacosta.dev/)
 
-This is a Next.js portfolio built with the App Router. The site includes:
+## About me
 
-- Responsive portfolio sections for selected work, experience and working approach.
-- A dark-first theme with a light counterpart.
-- Local brand and company assets.
-- A contact dialog backed by a server-side Resend integration.
-- Sass styles organized around BEM-style component classes.
-- Vercel-ready production configuration.
+I specialize in React and TypeScript, working on enterprise and financial applications where interfaces and business logic can get complex. My focus is on reusable components, design systems, and API integrations that make those interfaces easier to use and maintain.
+
+I care about accessibility, frontend performance, and maintainable, well-tested code—not just getting a feature out the door.
+
+## Featured projects
+
+Three independent products, from a published developer tool to platforms still taking shape.
+
+| Mockadabra | ORBIT Finance | Ani Studio |
+| :--- | :--- | :--- |
+| ![Mockadabra project artwork with API request and response panels](public/projects/mockadabra/cover.webp) | ![ORBIT Finance project artwork with a financial dashboard](public/projects/orbit-finance/cover.webp) | ![Ani Studio project artwork with handmade products and an online course](public/projects/ani-studio/cover.webp) |
+| A Chrome extension for mocking and modifying API requests, with rules, projects, environments, variables, and advanced request matching. | A personal finance application for accounts, transactions, budgets, analytics, and financial goals. | A creative commerce and learning platform for handmade products, personalized creations, and online courses. |
+| **Published on the Chrome Web Store** | **In development** | **In development** |
+| [Website](https://mockadabra-website.vercel.app/) · [Add to Chrome](https://chromewebstore.google.com/detail/mockadabra-api-mocking-re/jchfebdkfiognkefhfpmiimancglfiid) | Private build; no public link yet. | [Coming-soon website](https://anistudio.store/) |
+
+## Inside the portfolio
+
+- Interactive project showcase using the **View Transitions API**, with a fallback for unsupported browsers.
+- A **Git graph-inspired timeline** of my professional experience.
+- Responsive layouts with light and dark themes.
+- Accessible interactions and subtle animations that respect reduced-motion preferences.
+- A contact form integrated with **Resend**.
 
 ## Tech stack
 
-- Next.js 16
-- React 19
-- TypeScript
-- Sass
-- Next Font
-- Lucide React
-- Resend
-- Vercel Analytics
+- **Foundation:** Next.js 16 (App Router), React 19, TypeScript.
+- **Presentation:** Sass / SCSS, Next Font, Lucide React.
+- **Integrations:** Resend, Vercel Analytics.
 
-## Project structure
+## Running locally
 
-```text
-app/
-  api/contact/       Contact API route
-  styles/            Sass entrypoint, variables and base styles
-  layout.tsx         Root layout and metadata
-  page.tsx           Page composition
-components/
-  about/             How I work: principles and toolbox
-  brand/             lacosta.dev wordmark
-  contact/           Contact palette and dialog
-  experience/        Git-graph experience timeline
-  footer/            Site footer
-  header/            Header, navigation and theme switch
-  hero/              Homepage hero and profile summary
-  portfolio/         Shared portfolio data
-  projects/          Selected Work with a switchable featured project
-  section-heading/   Shared section heading
-lib/
-  contact/           Contact parsing and email service
-  hooks/             Shared React hooks
-public/
-  companies/         Company logos
-  *.png, *.svg       Brand and favicon assets
-```
-
-Components are kept close to their responsibility. Data that is shared by multiple portfolio sections lives in `components/portfolio/data.ts`. Styles are loaded from `app/styles/global.scss` and use BEM-style names such as `.work-featured__title` and `.timeline__item`, with one partial per section.
-
-## Getting started
-
-### Requirements
-
-- Node.js 20 or newer
-- npm or pnpm
-- A Resend API key if you want the contact form to send emails
-
-### Install dependencies
-
-Using pnpm:
+You'll need **Node.js 20.9+** and **pnpm**.
 
 ```bash
 pnpm install
+pnpm dev
 ```
 
-Using npm:
+Open [localhost:3000](http://localhost:3000).
 
-```bash
-npm install
-```
-
-### Configure environment variables
-
-Create `.env.local` in the project root:
+To enable contact-form email delivery, optionally create `.env.local`:
 
 ```env
 RESEND_API_KEY=re_your_key_here
-CONTACT_FROM_EMAIL=Website contact <onboarding@resend.dev>
+CONTACT_FROM_EMAIL="Website contact <onboarding@resend.dev>"
 ```
 
-Keep `.env.local` private. It is ignored by Git and must never be committed. In production, add the same variables in the Vercel project settings instead of uploading the local file.
+Keep this file private. Use a sender on a Resend-verified domain for production email.
 
-`CONTACT_FROM_EMAIL` can use Resend's test sender during development. For production, use a sender address from a domain verified in Resend.
+## Contact
 
-### Run locally
-
-```bash
-npm run dev
-```
-
-Then open [http://localhost:3000](http://localhost:3000).
-
-## Available scripts
-
-```bash
-npm run dev       # Start the development server
-npm run build     # Create a production build
-npm run start     # Run the production build locally
-```
-
-For a pnpm-based workflow, the equivalent commands are `pnpm dev`, `pnpm build` and `pnpm start`.
-
-## Contact form
-
-The form submits a `POST` request to `/api/contact`.
-
-The Next.js route at `app/api/contact/route.ts` is intentionally named according to the App Router convention. The application logic is kept in `lib/contact/contact-service.ts`, where contact data is parsed and sent through Resend.
-
-The endpoint returns:
-
-- `400` for invalid form data.
-- `503` when `RESEND_API_KEY` is not configured.
-- `500` when Resend cannot deliver the message.
-- `200` after a successful submission.
-
-## Deployment
-
-The project is configured for Vercel:
-
-1. Import the repository into Vercel.
-2. Use the default Next.js framework settings.
-3. Add `RESEND_API_KEY` and `CONTACT_FROM_EMAIL` under Project Settings → Environment Variables.
-4. Deploy from the branch connected to the project.
-
-Vercel uses `pnpm-lock.yaml` during installation. Keep it synchronized with `package.json` when changing dependencies:
-
-```bash
-pnpm install --lockfile-only
-pnpm install --lockfile-only --frozen-lockfile
-```
-
-The second command is a useful local check for the same lockfile constraint used by CI and deployment environments.
-
-## Links
-
-- [GitHub](https://github.com/lacosta)
-- [LinkedIn](https://www.linkedin.com/in/lacostadev/)
-
-## License
-
-This is a personal portfolio project. The source code is available for reference, but the personal branding, copy and assets should not be reused as someone else's portfolio.
+[Portfolio](https://www.lacosta.dev/) · [GitHub](https://github.com/lacosta) · [LinkedIn](https://www.linkedin.com/in/lacostadev/)
