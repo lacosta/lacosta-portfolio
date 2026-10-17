@@ -618,3 +618,15 @@
     transition-delay: 0.55s;
   }
 }
+
+// Keep the featured panel above transitioning project images.
+::view-transition-group(featured-panel) {
+  z-index: 10;
+}
+
+// Project images must remain behind the panel.
+::view-transition-group(mockadabra),
+::view-transition-group(orbit-finance),
+::view-transition-group(ani-studio) {
+  z-index: 1;
+}

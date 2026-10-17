@@ -18,14 +18,19 @@ interface FeaturedProjectProps {
   titleRef: Ref<HTMLHeadingElement>;
 }
 
-export const FeaturedProject = ({ project, titleRef }: FeaturedProjectProps) => {
+export const FeaturedProject = ({
+  project,
+  titleRef,
+}: FeaturedProjectProps) => {
   const [primary, secondary] = availableLinks(project);
 
   return (
     <article
       className="work-featured"
       aria-labelledby="work-featured-title"
-      style={{ "--project-accent": `var(--accent-${project.slug})` } as CSSProperties}
+      style={
+        { "--project-accent": `var(--accent-${project.slug})` } as CSSProperties
+      }
     >
       <p className="work-meta">
         <span>{project.number} · featured</span>
@@ -49,7 +54,10 @@ export const FeaturedProject = ({ project, titleRef }: FeaturedProjectProps) => 
           style={{ objectPosition: project.cover.position }}
         />
       </div>
-      <div className="work-featured__panel">
+      <div
+        className="work-featured__panel"
+        style={{ viewTransitionName: "featured-panel" }}
+      >
         <ProjectStatus status={project.status} />
         <div className="work-featured__heading">
           <h3
@@ -63,7 +71,10 @@ export const FeaturedProject = ({ project, titleRef }: FeaturedProjectProps) => 
           <p className="work-featured__stack">{project.tags.join(" · ")}</p>
         </div>
         <p className="work-featured__tagline">{project.tagline}</p>
-        <ul className="work-featured__features" aria-label={`${project.title} features`}>
+        <ul
+          className="work-featured__features"
+          aria-label={`${project.title} features`}
+        >
           {project.features.map((feature) => (
             <li key={feature}>{feature}</li>
           ))}
