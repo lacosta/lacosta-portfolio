@@ -148,7 +148,7 @@ export const projects: readonly Project[] = [
       background: "#0e3b40",
       position: "50% 30%",
     },
-    links: [{ label: "GitHub", href: "https://github.com/lacosta/GitLands" }],
+    links: [{ label: "Play GitLands", href: "https://gitlands-adventure.vercel.app/" }],
   },
 ];
 
