@@ -6,7 +6,7 @@ export interface ProjectLink {
 }
 
 export interface Project {
-  slug: "mockadabra" | "orbit-finance" | "ani-studio";
+  slug: "mockadabra" | "orbit-finance" | "ani-studio" | "gitlands";
   number: string;
   title: string;
   shortTitle: string;
@@ -121,6 +121,34 @@ export const projects: readonly Project[] = [
       },
     ],
     note: "Coming-soon site",
+  },
+  {
+    slug: "gitlands",
+    number: "04",
+    title: "GitLands",
+    shortTitle: "GitLands",
+    kind: "learning game",
+    status: { label: "Playable · open source", tone: "live" },
+    tagline: "Learn Git by exploring a world of islands.",
+    summary:
+      "A 3D adventure where every island is a corner of Git: investigate real incidents in a simulated terminal and see what each command changed.",
+    features: [
+      "3D world",
+      "simulated Git",
+      "guided lessons",
+      "merge conflicts",
+      "EN · ES · PT",
+    ],
+    tags: ["React", "TypeScript", "Three.js", "React Three Fiber", "Vite"],
+    cover: {
+      src: "/projects/gitlands/cover.webp",
+      alt: "GitLands cover showing low-poly islands with a commit graph, a merge conflict card and a terminal floating above them.",
+      width: 1200,
+      height: 900,
+      background: "#0e3b40",
+      position: "50% 30%",
+    },
+    links: [{ label: "GitHub", href: "https://github.com/lacosta/GitLands" }],
   },
 ];
 
