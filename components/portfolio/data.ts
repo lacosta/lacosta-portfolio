@@ -143,8 +143,8 @@ export const projects: readonly Project[] = [
     cover: {
       src: "/projects/gitlands/cover.webp",
       alt: "GitLands cover showing low-poly islands with a commit graph, a merge conflict card and a terminal floating above them.",
-      width: 1200,
-      height: 900,
+      width: 2400,
+      height: 1800,
       background: "#0e3b40",
       position: "50% 30%",
     },
