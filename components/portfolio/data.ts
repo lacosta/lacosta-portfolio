@@ -131,12 +131,12 @@ export const projects: readonly Project[] = [
     status: { label: "Playable · open source", tone: "live" },
     tagline: "Learn Git by exploring a world of islands.",
     summary:
-      "A 3D adventure where every island is a corner of Git: investigate real incidents in a simulated terminal and see what each command changed.",
+      "A 3D adventure across 8 islands and 29 missions: investigate real incidents in a simulated terminal, ship work through pull requests the way a team does, and take a Git cheat sheet with you.",
     features: [
-      "3D world",
+      "29 missions",
       "simulated Git",
-      "guided lessons",
-      "merge conflicts",
+      "pull request workflow",
+      "cheat sheet",
       "EN · ES · PT",
     ],
     tags: ["React", "TypeScript", "Three.js", "React Three Fiber", "Vite"],
